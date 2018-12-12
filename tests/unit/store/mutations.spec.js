@@ -147,4 +147,26 @@ describe('mutations', () => {
     expect(store.state.tableData[2]['Description']).toEqual('dui, in sodales elit erat vitae risus. Duis a mi')
     expect(store.state.tableData[3]['Description']).toEqual('massa lobortis ultrices. Vivamus rhoncus.')
   })
+
+  it('sortByColumn with Date', () => {
+    store.commit('sortByColumn', {
+      column: 'Date',
+      direction: 'desc'
+    })
+
+    expect(store.state.tableData[0]['Date']).toEqual('2019-09-30T06:56:15-07:00')
+    expect(store.state.tableData[1]['Date']).toEqual('2018-11-11T06:19:57-08:00')
+    expect(store.state.tableData[2]['Date']).toEqual('2018-11-08T05:44:15-08:00')
+    expect(store.state.tableData[3]['Date']).toEqual('2017-07-23T04:24:49-07:00')
+
+    store.commit('sortByColumn', {
+      column: 'Date',
+      direction: 'asc'
+    })
+
+    expect(store.state.tableData[0]['Date']).toEqual('2017-07-23T04:24:49-07:00')
+    expect(store.state.tableData[1]['Date']).toEqual('2018-11-08T05:44:15-08:00')
+    expect(store.state.tableData[2]['Date']).toEqual('2018-11-11T06:19:57-08:00')
+    expect(store.state.tableData[3]['Date']).toEqual('2019-09-30T06:56:15-07:00')
+  })
 })
