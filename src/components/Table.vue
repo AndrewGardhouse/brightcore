@@ -1,16 +1,25 @@
 <template>
   <div class="table-wrapper">
     <TableHeader />
+    <TableRow v-for="row in tableData"
+              :key="row['ID']"
+              :id="row['ID']"
+              :name="row['Name']"
+              :description="row['Description']"
+              :date="row['Date']"
+              :amount="row['Amount']" />
   </div>
 </template>
 
 <script>
 import TableHeader from './TableHeader.vue'
+import TableRow from './TableRow.vue'
 import { mapState } from 'vuex'
 
 export default {
   components: {
-    TableHeader
+    TableHeader,
+    TableRow
   },
   computed: {
     ...mapState([

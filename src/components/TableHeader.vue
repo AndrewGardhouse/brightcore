@@ -23,6 +23,7 @@ export default {
 <style lang="scss">
 .table-header {
   display: grid;
+  border-bottom: 1px solid #2c3e50;
   .header-column {
     display: flex;
     padding: 0.5rem;
