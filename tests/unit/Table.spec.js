@@ -54,6 +54,6 @@ describe('Table.vue', () => {
   })
 
   it('should have the tableData from the store', () => {
-    expect(wrapper.vm.tableData.length).toBe(4)
+    expect(wrapper.vm.tableData.length).toBe(store.state.tableData.length)
   })
 })
