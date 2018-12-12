@@ -21,4 +21,9 @@ export default {
 </script>
 
 <style lang="scss">
+.table-wrapper {
+  border: 1px solid #2c3e50;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
 </style>
