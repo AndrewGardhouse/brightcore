@@ -103,4 +103,48 @@ describe('mutations', () => {
     expect(store.state.tableData[2]['ID']).toEqual('9F5C9912-936A-FB85-1EDB-9DA87BE7FF1E')
     expect(store.state.tableData[3]['ID']).toEqual('B743AC82-3613-13A2-2E42-E0C1F5CBF8A6')
   })
+
+  it('sortByColumn with Name', () => {
+    store.commit('sortByColumn', {
+      column: 'Name',
+      direction: 'desc'
+    })
+
+    expect(store.state.tableData[0]['Name']).toEqual('Kyra Lester')
+    expect(store.state.tableData[1]['Name']).toEqual('Cameron Thompson')
+    expect(store.state.tableData[2]['Name']).toEqual('Buckminster Alvarado')
+    expect(store.state.tableData[3]['Name']).toEqual('Athena Smith')
+
+    store.commit('sortByColumn', {
+      column: 'Name',
+      direction: 'asc'
+    })
+
+    expect(store.state.tableData[0]['Name']).toEqual('Athena Smith')
+    expect(store.state.tableData[1]['Name']).toEqual('Buckminster Alvarado')
+    expect(store.state.tableData[2]['Name']).toEqual('Cameron Thompson')
+    expect(store.state.tableData[3]['Name']).toEqual('Kyra Lester')
+  })
+
+  it('sortByColumn with Description', () => {
+    store.commit('sortByColumn', {
+      column: 'Description',
+      direction: 'desc'
+    })
+
+    expect(store.state.tableData[0]['Description']).toEqual('massa lobortis ultrices. Vivamus rhoncus.')
+    expect(store.state.tableData[1]['Description']).toEqual('dui, in sodales elit erat vitae risus. Duis a mi')
+    expect(store.state.tableData[2]['Description']).toEqual('dolor. Fusce mi lorem, vehicula et, rutrum eu,')
+    expect(store.state.tableData[3]['Description']).toEqual('Curabitur dictum. Phasellus in')
+
+    store.commit('sortByColumn', {
+      column: 'Description',
+      direction: 'asc'
+    })
+
+    expect(store.state.tableData[0]['Description']).toEqual('Curabitur dictum. Phasellus in')
+    expect(store.state.tableData[1]['Description']).toEqual('dolor. Fusce mi lorem, vehicula et, rutrum eu,')
+    expect(store.state.tableData[2]['Description']).toEqual('dui, in sodales elit erat vitae risus. Duis a mi')
+    expect(store.state.tableData[3]['Description']).toEqual('massa lobortis ultrices. Vivamus rhoncus.')
+  })
 })
