@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import Table from '@/components/Table';
@@ -47,7 +47,7 @@ describe('Table.vue', () => {
       }
     })
 
-    wrapper = mount(Table, {
+    wrapper = shallowMount(Table, {
       store,
       localVue
     })
