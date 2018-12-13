@@ -8,9 +8,13 @@ export default {
       const tableDataClone = JSON.parse(JSON.stringify(state.tableData))
       state.filteredTableData = tableDataClone.sort((a, b) => {
         if (payload.direction == 'desc') {
-          return a[payload.column] < b[payload.column]
-        } else if (payload.direction == 'asc') {
-          return a[payload.column] > b[payload.column]
+          if(a[payload.column] < b[payload.column]) { return 1 }
+          if(a[payload.column] > b[payload.column]) { return -1 }
+          return 0
+        } else {
+          if(a[payload.column] > b[payload.column]) { return 1 }
+          if(a[payload.column] < b[payload.column]) { return -1 }
+          return 0
         }
       })
     } else {
