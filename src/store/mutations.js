@@ -4,12 +4,16 @@ export default {
     Object.assign(row, payload);
   },
   sortByColumn(state, payload) {
-    state.tableData = state.tableData.sort((a, b) => {
-      if (payload.direction == 'desc') {
-        return a[payload.column] < b[payload.column]
-      } else if (payload.direction == 'asc') {
-        return a[payload.column] > b[payload.column]
-      }
-    })
+    if (payload.direction) {
+      state.filteredTableData = state.tableData.sort((a, b) => {
+        if (payload.direction == 'desc') {
+          return a[payload.column] < b[payload.column]
+        } else if (payload.direction == 'asc') {
+          return a[payload.column] > b[payload.column]
+        }
+      })
+    } else {
+      state.filteredTableData = []
+    }
   }
 }
