@@ -1,6 +1,6 @@
 <template>
   <div class="table-wrapper">
-    <TableHeader />
+    <TableHeaders />
     <TableRow v-for="row in sortedTableData"
               :key="row['ID']"
               :id="row['ID']"
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import TableHeader from './TableHeader.vue'
+import TableHeaders from './TableHeaders.vue'
 import TableRow from './TableRow.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    TableHeader,
+    TableHeaders,
     TableRow
   },
   computed: {

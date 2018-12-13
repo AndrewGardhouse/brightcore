@@ -1,5 +1,5 @@
 export default {
-  tableHeaders(state) {
+  tableHeaderNames(state) {
     return Object.keys(state.tableData[0])
   },
   sortedTableData(state) {

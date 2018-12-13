@@ -2,9 +2,9 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import getters from '@/store/getters'
 
-import TableHeader from '@/components/TableHeader'
+import TableHeaders from '@/components/TableHeaders'
 
-describe('TableHeader.vue', () => {
+describe('TableHeaders.vue', () => {
   let wrapper
   let localVue
   let store
@@ -49,13 +49,13 @@ describe('TableHeader.vue', () => {
       getters
     })
 
-    wrapper = shallowMount(TableHeader, {
+    wrapper = shallowMount(TableHeaders, {
       store,
       localVue
     })
   })
 
-  it('should have the tableHeaders getter from store', () => {
-    expect(wrapper.vm.tableHeaders.length).toBe(store.getters.tableHeaders.length)
+  it('should have the tableHeaderNames getter from store', () => {
+    expect(wrapper.vm.tableHeaderNames.length).toBe(store.getters.tableHeaderNames.length)
   })
 })

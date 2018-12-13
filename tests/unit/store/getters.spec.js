@@ -49,9 +49,9 @@ describe('getters', () => {
     })
   })
 
-  it('tableHeaders', () => {
+  it('tableHeaderNames', () => {
     const expected = ['ID', 'Name', 'Description', 'Date', 'Amount']
-    expect(store.getters.tableHeaders).toEqual(expected)
+    expect(store.getters.tableHeaderNames).toEqual(expected)
   })
 
   it('sortedTableData', () => {
