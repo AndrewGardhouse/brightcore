@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-
+import getters from '@/store/getters'
 import Table from '@/components/Table';
 
 describe('Table.vue', () => {
@@ -14,6 +14,7 @@ describe('Table.vue', () => {
 
     store = new Vuex.Store({
       state: {
+        filteredTableData: [],
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -44,7 +45,8 @@ describe('Table.vue', () => {
             'Amount': 80760
           }
         ]
-      }
+      },
+      getters
     })
 
     wrapper = shallowMount(Table, {
@@ -53,7 +55,7 @@ describe('Table.vue', () => {
     })
   })
 
-  it('should have the tableData from the store', () => {
-    expect(wrapper.vm.tableData.length).toBe(store.state.tableData.length)
+  it('should have the sortedTableData from the store', () => {
+    expect(wrapper.vm.sortedTableData.length).toBe(store.getters.sortedTableData.length)
   })
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="table-wrapper">
     <TableHeader />
-    <TableRow v-for="row in tableData"
+    <TableRow v-for="row in sortedTableData"
               :key="row['ID']"
               :id="row['ID']"
               :name="row['Name']"
@@ -14,7 +14,7 @@
 <script>
 import TableHeader from './TableHeader.vue'
 import TableRow from './TableRow.vue'
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -22,8 +22,8 @@ export default {
     TableRow
   },
   computed: {
-    ...mapState([
-      'tableData'
+    ...mapGetters([
+      'sortedTableData'
     ])
   }
 }
