@@ -1,5 +1,4 @@
 export default {
-  filteredTableData: [],
   sortBy: '',
   sortDirection: '',
   tableData: [

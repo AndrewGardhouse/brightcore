@@ -12,7 +12,8 @@ describe('getters', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       state: {
-        filteredTableData: [],
+        sortBy: '',
+        sortDirection: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -60,30 +61,24 @@ describe('getters', () => {
     expect(store.getters.sortedTableData[2]['Amount']).toEqual(7367)
     expect(store.getters.sortedTableData[3]['Amount']).toEqual(80760)
 
-    store.commit('sortByColumn', {
-      column: 'Amount',
-      direction: 'desc'
-    })
+    store.commit('setSortBy', 'Amount')
+    store.commit('setSortDirection', 'desc')
 
     expect(store.getters.sortedTableData[0]['Amount']).toEqual(80760)
     expect(store.getters.sortedTableData[1]['Amount']).toEqual(67708)
     expect(store.getters.sortedTableData[2]['Amount']).toEqual(34554)
     expect(store.getters.sortedTableData[3]['Amount']).toEqual(7367)
 
-    store.commit('sortByColumn', {
-      column: 'Amount',
-      direction: 'asc'
-    })
+    store.commit('setSortBy', 'Amount')
+    store.commit('setSortDirection', 'asc')
 
     expect(store.getters.sortedTableData[0]['Amount']).toEqual(7367)
     expect(store.getters.sortedTableData[1]['Amount']).toEqual(34554)
     expect(store.getters.sortedTableData[2]['Amount']).toEqual(67708)
     expect(store.getters.sortedTableData[3]['Amount']).toEqual(80760)
 
-    store.commit('sortByColumn', {
-      column: 'Amount',
-      direction: ''
-    })
+    store.commit('setSortBy', '')
+    store.commit('setSortDirection', '')
 
     expect(store.getters.sortedTableData[0]['Amount']).toEqual(34554)
     expect(store.getters.sortedTableData[1]['Amount']).toEqual(67708)
