@@ -1,12 +1,17 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
-import getters from '@/store/getters'
-import Table from '@/components/Table';
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
+import mutations from '@/store/mutations'
+import Header from '@/components/Header'
 
-describe('Table.vue', () => {
-  let wrapper
+describe('Header.vue', () => {
   let localVue
   let store
+  let wrapper
+  let sortButton
+  let mutations = {
+    setSortBy: jest.fn(),
+    setSortDirection: jest.fn()
+  }
 
   beforeEach(() => {
     localVue = createLocalVue()
@@ -45,16 +50,40 @@ describe('Table.vue', () => {
           }
         ]
       },
-      getters
+      mutations
     })
 
-    wrapper = shallowMount(Table, {
+    wrapper = shallowMount(Header, {
+      propsData: {
+        header: 'Description'
+      },
       store,
       localVue
     })
+
+    sortButton = wrapper.find('.sort-column');
   })
 
-  it('should have the sortedTableData from the store', () => {
-    expect(wrapper.vm.sortedTableData.length).toBe(store.getters.sortedTableData.length)
+  it('incrementSortIndex() should increment the index and not go above 2', () => {
+    expect(wrapper.vm.sortDirectionIndex).toEqual(0)
+
+    sortButton.trigger('click')
+
+    expect(wrapper.vm.sortDirectionIndex).toEqual(1)
+
+    sortButton.trigger('click')
+
+    expect(wrapper.vm.sortDirectionIndex).toEqual(2)
+
+    sortButton.trigger('click')
+
+    expect(wrapper.vm.sortDirectionIndex).toEqual(0)
+  })
+
+  it('clicking sort button should trigger mutations', () => {
+    sortButton.trigger('click')
+
+    expect(mutations.setSortBy).toBeCalled();
+    expect(mutations.setSortDirection).toBeCalled();
   })
 })
