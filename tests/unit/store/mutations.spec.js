@@ -10,7 +10,8 @@ describe('mutations', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       state: {
-        filteredTableData: [],
+        sortBy: '',
+        sortDirection: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -59,6 +60,22 @@ describe('mutations', () => {
     })
 
     expect(updatedRow['Description']).toEqual(Description)
+  })
+
+  it('setSortBy', () => {
+    expect(store.state.sortBy).toEqual('')
+
+    store.commit('setSortBy', 'Description')
+
+    expect(store.state.sortBy).toEqual('Description')
+  })
+
+  it('setSortDirection', () => {
+    expect(store.state.sortDirection).toEqual('')
+
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.state.sortDirection).toEqual('desc')
   })
 
   it('sortByColumn with Amount', () => {

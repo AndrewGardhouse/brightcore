@@ -3,6 +3,12 @@ export default {
     const row = state.tableData.find(row => row['ID'] === payload['ID'])
     Object.assign(row, payload);
   },
+  setSortBy(state, value) {
+    state.sortBy = value
+  },
+  setSortDirection(state, value) {
+    state.sortDirection = value
+  },
   sortByColumn(state, payload) {
     if (payload.direction) {
       const tableDataClone = JSON.parse(JSON.stringify(state.tableData))
