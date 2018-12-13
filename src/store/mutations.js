@@ -5,7 +5,8 @@ export default {
   },
   sortByColumn(state, payload) {
     if (payload.direction) {
-      state.filteredTableData = state.tableData.sort((a, b) => {
+      const tableDataClone = JSON.parse(JSON.stringify(state.tableData))
+      state.filteredTableData = tableDataClone.sort((a, b) => {
         if (payload.direction == 'desc') {
           return a[payload.column] < b[payload.column]
         } else if (payload.direction == 'asc') {
