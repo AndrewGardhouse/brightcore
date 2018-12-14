@@ -2,23 +2,37 @@
   <div class="table-headers" :style="{ gridTemplateColumns: `repeat(${tableHeaderNames.length}, 1fr)` }">
     <Header v-for="(header, index) in tableHeaderNames"
             :key="index"
+            :ref="header"
+            @isClicked="resetSortIndexes"
             :header="header" />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
     Header
   },
   computed: {
+    ...mapState([
+      'sortBy'
+    ]),
     ...mapGetters([
       'tableHeaderNames'
     ])
   },
+  methods: {
+    resetSortIndexes(header) {
+      this.tableHeaderNames.forEach((name) => {
+        if (this.sortBy !== name) {
+          this.$refs[name][0].sortDirectionIndex = 0
+        }
+      })
+    }
+  }
 }
 </script>
 

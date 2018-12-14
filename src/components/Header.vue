@@ -1,15 +1,15 @@
 <template>
-  <div class="header-column">
+  <div class="header-column" :class="{ active: sortBy === header && sortDirection }">
     <p class="text">{{ header }}</p>
     <button class="sort-column" @click="sortColumn">
-      <span class="desc">&#9663;</span>
-      <span class="asc">&#9663;</span>
+      <span class="desc" :class="{ active: sortDirection == 'desc'  }">&#9663;</span>
+      <span class="asc" :class="{ active: sortDirection == 'asc'  }">&#9663;</span>
     </button>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   props: {
@@ -23,6 +23,12 @@ export default {
       sortDirections: ['', 'asc', 'desc'],
       sortDirectionIndex: 0
     }
+  },
+  computed: {
+    ...mapState([
+      'sortBy',
+      'sortDirection'
+    ])
   },
   methods: {
     ...mapMutations([
@@ -39,6 +45,7 @@ export default {
       this.incrementSortIndex()
       this.setSortBy(this.header)
       this.setSortDirection(this.sortDirections[this.sortDirectionIndex])
+      this.$emit('isClicked', this.header)
     }
   }
 }
@@ -48,6 +55,14 @@ export default {
 .header-column {
   display: flex;
   padding: 0.5rem;
+  &.active {
+    .desc, .asc {
+      &.active {
+        color: blue;
+        font-weight: bold;
+      }
+    }
+  }
   .text {
     margin: 0;
     margin-right: 0.5rem;
@@ -65,10 +80,6 @@ export default {
     .desc, .asc {
       font-size: 1.2rem;
       line-height: 0.2;
-      &.active {
-        color: blue;
-        font-weight: bold;
-      }
     }
     .desc {
       transform: rotate(180deg);

@@ -1,8 +1,10 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import getters from '@/store/getters'
+import mutations from '@/store/mutations'
 
 import TableHeaders from '@/components/TableHeaders'
+import Header from '@/components/Header'
 
 describe('TableHeaders.vue', () => {
   let wrapper
@@ -15,6 +17,8 @@ describe('TableHeaders.vue', () => {
 
     store = new Vuex.Store({
       state: {
+        sortBy: '',
+        sortDirection: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -46,10 +50,11 @@ describe('TableHeaders.vue', () => {
           }
         ]
       },
-      getters
+      getters,
+      mutations
     })
 
-    wrapper = shallowMount(TableHeaders, {
+    wrapper = mount(TableHeaders, {
       store,
       localVue
     })
@@ -57,5 +62,21 @@ describe('TableHeaders.vue', () => {
 
   it('should have the tableHeaderNames getter from store', () => {
     expect(wrapper.vm.tableHeaderNames.length).toBe(store.getters.tableHeaderNames.length)
+  })
+
+  it('resetSortIndexes() should set sortDirectionIndexes of every header to 0 expect the header name passed', () => {
+    const headers = wrapper.findAll(Header)
+    const firstHeader = headers.at(0)
+    const secondHeader = headers.at(1)
+
+    firstHeader.find('.sort-column').trigger('click')
+
+    expect(firstHeader.vm.sortDirectionIndex).toBe(1)
+    expect(secondHeader.vm.sortDirectionIndex).toBe(0)
+
+    secondHeader.find('.sort-column').trigger('click')
+
+    expect(firstHeader.vm.sortDirectionIndex).toBe(0)
+    expect(secondHeader.vm.sortDirectionIndex).toBe(1)
   })
 })

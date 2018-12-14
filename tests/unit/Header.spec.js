@@ -8,10 +8,6 @@ describe('Header.vue', () => {
   let store
   let wrapper
   let sortButton
-  let mutations = {
-    setSortBy: jest.fn(),
-    setSortDirection: jest.fn()
-  }
 
   beforeEach(() => {
     localVue = createLocalVue()
@@ -19,6 +15,8 @@ describe('Header.vue', () => {
 
     store = new Vuex.Store({
       state: {
+        sortBy: '',
+        sortDirection: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -80,10 +78,30 @@ describe('Header.vue', () => {
     expect(wrapper.vm.sortDirectionIndex).toEqual(0)
   })
 
-  it('clicking sort button should trigger mutations', () => {
+  it('clicking sort button emits isClicked with header name', () => {
     sortButton.trigger('click')
 
-    expect(mutations.setSortBy).toBeCalled();
-    expect(mutations.setSortDirection).toBeCalled();
+    expect(wrapper.emitted().isClicked).toBeTruthy()
+    expect(wrapper.emitted().isClicked[0]).toEqual([wrapper.vm.header])
+  })
+
+  it('clicking sort button adds .active classes', () => {
+    const headerColumn = wrapper.find('.header-column')
+    const descArrow = sortButton.find('.desc')
+    const ascArrow = sortButton.find('.asc')
+
+    sortButton.trigger('click')
+
+    expect(headerColumn.classes()).toContain('active')
+    expect(ascArrow.classes()).toContain('active')
+
+    sortButton.trigger('click')
+
+    expect(descArrow.classes()).toContain('active')
+
+    sortButton.trigger('click')
+
+    expect(ascArrow.classes()).not.toContain('active')
+    expect(descArrow.classes()).not.toContain('active')
   })
 })
