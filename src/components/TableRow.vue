@@ -48,7 +48,6 @@ export default {
       return this.currencyFormatter.format(this.amount / 100)
     },
     formattedDate() {
-      // return this.date
       return dayjs(this.date).format('MMM DD YYYY h:mmA')
     }
   }
