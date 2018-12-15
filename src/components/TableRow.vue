@@ -2,7 +2,7 @@
   <div class="table-row">
     <div class="column">{{ id }}</div>
     <div class="column">{{ name }}</div>
-    <div class="column">{{ description }}</div>
+    <DescriptionForm :id="id" :description="description" />
     <div class="column">{{ formattedDate }}</div>
     <div class="column">{{ formattedCurrency }}</div>
   </div>
@@ -10,8 +10,12 @@
 
 <script>
 import dayjs from 'dayjs'
+import DescriptionForm from '@/components/DescriptionForm'
 
 export default {
+  components: {
+    DescriptionForm
+  },
   props: {
     id: {
       required: true,
