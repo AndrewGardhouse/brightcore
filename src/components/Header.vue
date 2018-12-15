@@ -58,7 +58,7 @@ export default {
   &.active {
     .desc, .asc {
       &.active {
-        color: blue;
+        color: rgba(33, 157, 166, 0.7);
         font-weight: bold;
       }
     }
