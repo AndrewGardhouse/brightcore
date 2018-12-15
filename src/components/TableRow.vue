@@ -3,12 +3,14 @@
     <div class="column">{{ id }}</div>
     <div class="column">{{ name }}</div>
     <div class="column">{{ description }}</div>
-    <div class="column">{{ date }}</div>
-    <div class="column">{{ convertedCurrency }}</div>
+    <div class="column">{{ formattedDate }}</div>
+    <div class="column">{{ formattedCurrency }}</div>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+
 export default {
   props: {
     id: {
@@ -42,14 +44,12 @@ export default {
     }
   },
   computed: {
-    convertedCurrency() {
-      // const currencyFormatter = new Intl.NumberFormat('en-US', {
-      //   style: 'currency',
-      //   currency: 'USD',
-      //   minimumFractionDigits: 2
-      // })
+    formattedCurrency() {
       return this.currencyFormatter.format(this.amount / 100)
-      // return this.amount < 0 ? `-$${Math.abs((this.amount / 100).toFixed(2))}` : `$${(this.amount / 100).toFixed(2)}`
+    },
+    formattedDate() {
+      // return this.date
+      return dayjs(this.date).format('MMM DD YYYY h:mmA')
     }
   }
 }
