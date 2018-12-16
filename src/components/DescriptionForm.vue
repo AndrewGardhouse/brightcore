@@ -1,5 +1,5 @@
 <template>
-  <div class="description column">
+  <div class="description-column">
     <form class="edit-description"
           v-if="showEditForm"
           @submit.prevent="submitForm">
@@ -7,14 +7,17 @@
                 v-model="editDescrpition"
                 v-if="showEditForm"></textarea>
       <div>
-        <button type="submit" class="submit">Submit Form</button>
+        <button type="submit" class="submit">Save</button>
         <button class="cancel-button"
-                @click="toggleShowEditForm">Cancel Form</button>
+                @click="toggleShowEditForm">Close</button>
       </div>
     </form>
-    <div v-else>
-      <p v-text="description"></p>
-      <button class="edit-button" @click="toggleShowEditForm">Edit Form</button>
+    <div class="display" v-else>
+      <p class="text" v-text="description"></p>
+      <font-awesome-icon class="edit-button"
+                         @click="toggleShowEditForm"
+                         icon="edit"
+                         size="xs" />
     </div>
   </div>
 </template>
@@ -57,12 +60,23 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.description {
+<style lang="scss" scoped>
+.description-column {
+  padding: 0.5rem;
   .edit-description {
     textarea {
       width: 100%;
       resize: none;
+    }
+  }
+  .display {
+    display: flex;
+    .edit-button {
+      cursor: pointer;
+      padding-left: 0.5rem;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: auto;
     }
   }
 }

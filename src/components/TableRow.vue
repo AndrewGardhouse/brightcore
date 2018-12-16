@@ -1,10 +1,18 @@
 <template>
   <div class="table-row">
-    <div class="column">{{ id }}</div>
-    <div class="column">{{ name }}</div>
+    <div class="column">
+      <p>{{ id }}</p>
+    </div>
+    <div class="column">
+      <p>{{ name }}</p>
+    </div>
     <DescriptionForm :id="id" :description="description" />
-    <div class="column">{{ formattedDate }}</div>
-    <div class="column">{{ formattedCurrency }}</div>
+    <div class="column">
+      <p>{{ formattedDate }}</p>
+    </div>
+    <div class="column">
+      <p>{{ formattedCurrency }}</p>
+    </div>
   </div>
 </template>
 
@@ -64,6 +72,11 @@ export default {
   grid-template-columns: repeat(5, 1fr);
   .column {
     padding: 0.5rem;
+    display: flex;
+    p {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
   }
 }
 </style>
