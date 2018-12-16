@@ -18,5 +18,16 @@ export default {
     } else {
       return state.tableData
     }
+  },
+  tableDataBySearchText(state, getters) {
+    if (state.searchText) {
+      return [...getters.sortedTableData].filter((row) => {
+        return row['ID'].toLowerCase().includes(state.searchText.toLowerCase()) ||
+               row['Description'].toLowerCase().includes(state.searchText.toLowerCase()) ||
+               row['Name'].toLowerCase().includes(state.searchText.toLowerCase())
+      })
+    } else {
+      return getters.sortedTableData
+    }
   }
 }

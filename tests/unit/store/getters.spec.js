@@ -12,6 +12,7 @@ describe('getters', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       state: {
+        searchText: '',
         sortBy: '',
         sortDirection: '',
         tableData: [
@@ -84,5 +85,27 @@ describe('getters', () => {
     expect(store.getters.sortedTableData[1]['Amount']).toEqual(67708)
     expect(store.getters.sortedTableData[2]['Amount']).toEqual(7367)
     expect(store.getters.sortedTableData[3]['Amount']).toEqual(80760)
+  })
+
+  it('tableDataBySearchText', () => {
+    // Name
+    store.commit('setSearchText', 'Kyra')
+
+    expect(store.getters.tableDataBySearchText.length).toEqual(1)
+
+    // Description
+    store.commit('setSearchText', 'Curabitur dictum.')
+
+    expect(store.getters.tableDataBySearchText.length).toEqual(1)
+
+    // ID
+    store.commit('setSearchText', '9F5C9912-936A-FB85-1EDB-9DA87BE7FF1E')
+
+    expect(store.getters.tableDataBySearchText.length).toEqual(1)
+
+    // No searchText
+    store.commit('setSearchText', '')
+
+    expect(store.getters.tableDataBySearchText.length).toEqual(4)
   })
 })
