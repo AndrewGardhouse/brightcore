@@ -51,7 +51,7 @@ describe('DescriptionForm', () => {
 
     expect(wrapper.find('form').exists()).toBe(true)
 
-    wrapper.find('.cancel-button').trigger('click')
+    wrapper.find('.cancel').trigger('click')
 
     expect(wrapper.find('form').exists()).toBe(false)
   })
@@ -66,7 +66,7 @@ describe('DescriptionForm', () => {
 
     expect(wrapper.vm.editDescrpition).toBe(newDescription)
 
-    wrapper.find('.cancel-button').trigger('click')
+    wrapper.find('.cancel').trigger('click')
 
     expect(wrapper.vm.description).not.toBe(newDescription)
   })
