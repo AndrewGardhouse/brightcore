@@ -6,9 +6,9 @@
       <textarea name="description"
                 v-model="editDescrpition"
                 v-if="showEditForm"></textarea>
-      <div>
+      <div class="buttons">
         <button type="submit" class="submit">Save</button>
-        <button class="cancel-button"
+        <button class="cancel"
                 @click="toggleShowEditForm">Close</button>
       </div>
     </form>
@@ -64,16 +64,50 @@ export default {
 .description-column {
   padding: 0.5rem;
   .edit-description {
+    display: flex;
+    flex-direction: column;
     textarea {
-      width: 100%;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      padding: 0.25rem;
+      color: rgba(26, 26, 26, .9);
+      border-color: rgba(26, 26, 26, 0.7);
       resize: none;
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+      button {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        border: none;
+        padding: 0.3rem 0.5rem;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        &.submit {
+          background-color: rgba(63, 137, 56, 0.7);
+          &:hover {
+            background-color: rgba(63, 137, 56, 1);
+          }
+        }
+        &.cancel {
+          background-color: rgba(201, 58, 51, 0.7);
+          &:hover {
+            background-color: rgba(201, 58, 51, 1);
+          }
+        }
+      }
     }
   }
   .display {
     display: flex;
     .edit-button {
       cursor: pointer;
-      padding-left: 0.5rem;
+      padding: 0 0.5rem;
       margin-top: auto;
       margin-bottom: auto;
       margin-left: auto;
