@@ -1,5 +1,8 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import mutations from '@/store/mutations'
 import DescriptionForm from '@/components/DescriptionForm'
 
@@ -11,6 +14,8 @@ describe('DescriptionForm', () => {
   beforeEach(() => {
     localVue = createLocalVue()
     localVue.use(Vuex)
+    library.add(faEdit);
+    localVue.component('font-awesome-icon', FontAwesomeIcon);
 
     store = new Vuex.Store({
       state: {
