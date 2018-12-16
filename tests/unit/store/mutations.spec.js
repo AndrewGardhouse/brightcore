@@ -10,6 +10,7 @@ describe('mutations', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       state: {
+        searchText: '',
         sortBy: '',
         sortDirection: '',
         tableData: [
@@ -76,5 +77,14 @@ describe('mutations', () => {
     store.commit('setSortDirection', 'desc')
 
     expect(store.state.sortDirection).toEqual('desc')
+  })
+
+  it('setSearchText', () => {
+    const searchText = 'Kyra'
+    expect(store.state.searchText).toEqual('')
+
+    store.commit('setSearchText', searchText)
+
+    expect(store.state.searchText).toEqual(searchText)
   })
 })

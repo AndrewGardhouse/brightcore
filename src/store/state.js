@@ -1,4 +1,5 @@
 export default {
+  searchText: '',
   sortBy: '',
   sortDirection: '',
   tableData: [

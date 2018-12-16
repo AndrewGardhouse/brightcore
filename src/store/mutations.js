@@ -8,5 +8,8 @@ export default {
   },
   setSortDirection(state, value) {
     state.sortDirection = value
+  },
+  setSearchText(state, value) {
+    state.searchText = value
   }
 }
