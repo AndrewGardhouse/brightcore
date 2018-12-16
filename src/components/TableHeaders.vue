@@ -25,7 +25,7 @@ export default {
     ])
   },
   methods: {
-    resetSortIndexes(header) {
+    resetSortIndexes() {
       this.tableHeaderNames.forEach((name) => {
         if (this.sortBy !== name) {
           this.$refs[name][0].sortDirectionIndex = 0
