@@ -34,5 +34,8 @@ export default {
   border: 1px solid #2c3e50;
   margin-left: 4rem;
   margin-right: 4rem;
+  .table-row:nth-child(even) {
+    background-color: #e6eeef;
+  }
 }
 </style>
