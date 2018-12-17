@@ -16,6 +16,13 @@ describe('SearchFilters', () => {
 
     store = new Vuex.Store({
       state: {
+        searchText: '',
+        sortBy: '',
+        sortDirection: '',
+        amountRangeMin: '',
+        amountRangeMax: '',
+        dateRangeMin: '',
+        dateRangeMax: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -73,8 +80,8 @@ describe('SearchFilters', () => {
     expect(store.state.searchText).toBe(wrapper.vm.filters.searchText)
     expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin * 100)
     expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax * 100)
-    expect(store.state.dateRangeMin).toBe(wrapper.vm.filters.dateRangeMin)
-    expect(store.state.dateRangeMax).toBe(wrapper.vm.filters.dateRangeMax)
+    expect(store.state.dateRangeMin).toEqual(new Date(wrapper.vm.filters.dateRangeMin))
+    expect(store.state.dateRangeMax).toEqual(new Date(wrapper.vm.filters.dateRangeMax))
   })
 
 
@@ -94,8 +101,8 @@ describe('SearchFilters', () => {
     expect(store.state.searchText).toBe(wrapper.vm.filters.searchText)
     expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin * 100)
     expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax * 100)
-    expect(store.state.dateRangeMin).toBe(wrapper.vm.filters.dateRangeMin)
-    expect(store.state.dateRangeMax).toBe(wrapper.vm.filters.dateRangeMax)
+    expect(store.state.dateRangeMin).toEqual(new Date(wrapper.vm.filters.dateRangeMin))
+    expect(store.state.dateRangeMax).toEqual(new Date(wrapper.vm.filters.dateRangeMax))
 
     wrapper.vm.clearFilters()
 
@@ -130,7 +137,7 @@ describe('SearchFilters', () => {
     expect(wrapper.vm.amountRangeMinCents).toBe('')
   })
 
-  it('amountRangeMaxCents returns in cents', () => {
+  it('amountRangeMaxCents returns the amountRangeMax in cents', () => {
     wrapper.setData({
       filters: {
         amountRangeMax: 1000
@@ -161,5 +168,60 @@ describe('SearchFilters', () => {
 
     expect(store.state.amountRangeMin).toEqual(minAmount * 100)
     expect(store.state.amountRangeMax).toEqual(maxAmount * 100)
+  })
+
+  it('formattedDateRangeMin returns formatted date', () => {
+    wrapper.setData({
+      filters: {
+        dateRangeMin: '11-11-2018'
+      }
+    })
+
+    expect(wrapper.vm.formattedDateRangeMin).toEqual(new Date(wrapper.vm.filters.dateRangeMin))
+
+    wrapper.setData({
+      filters: {
+        dateRangeMin: ''
+      }
+    })
+
+    expect(wrapper.vm.formattedDateRangeMin).toBe('')
+  })
+
+  it('formattedDateRangeMax returns formatted date', () => {
+    wrapper.setData({
+      filters: {
+        dateRangeMax: '11-11-2018'
+      }
+    })
+
+    expect(wrapper.vm.formattedDateRangeMax).toEqual(new Date(wrapper.vm.filters.dateRangeMax))
+
+    wrapper.setData({
+      filters: {
+        dateRangeMax: ''
+      }
+    })
+
+    expect(wrapper.vm.formattedDateRangeMax).toBe('')
+  })
+
+  it('date range fields should submit formatted date', () => {
+    const minDate = '2018-11-11'
+    const maxDate = '2018-11-11'
+
+    const minDateField = wrapper.find('#min-date')
+    const maxDateField = wrapper.find('#max-date')
+
+    minDateField.setValue(minDate)
+    maxDateField.setValue(maxDate)
+
+    expect(wrapper.vm.filters.dateRangeMin).toBe(minDate)
+    expect(wrapper.vm.filters.dateRangeMax).toBe(maxDate)
+
+    wrapper.vm.searchByFilters()
+
+    expect(store.state.dateRangeMin).toEqual(new Date(minDate))
+    expect(store.state.dateRangeMax).toEqual(new Date(maxDate))
   })
 })

@@ -15,7 +15,7 @@
           </div>
           <div class="range max">
             <label for="max-date">Max: </label>
-            <input id="max-date" type="date" name="man-date" v-model="filters.dateRangeMax">
+            <input id="max-date" type="date" name="max-date" v-model="filters.dateRangeMax">
           </div>
         </div>
       </div>
@@ -61,7 +61,13 @@ export default {
     },
     amountRangeMaxCents() {
       return this.filters.amountRangeMax ? this.filters.amountRangeMax * 100 : ''
-    }
+    },
+    formattedDateRangeMin() {
+      return this.filters.dateRangeMin ? new Date(this.filters.dateRangeMin) : ''
+    },
+    formattedDateRangeMax() {
+      return this.filters.dateRangeMax ? new Date(this.filters.dateRangeMax) : ''
+    },
   },
   methods: {
     ...mapActions([
@@ -76,6 +82,8 @@ export default {
         ...this.filters,
         amountRangeMin: this.amountRangeMinCents,
         amountRangeMax: this.amountRangeMaxCents,
+        dateRangeMin: this.formattedDateRangeMin,
+        dateRangeMax: this.formattedDateRangeMax
       })
     }
   }
