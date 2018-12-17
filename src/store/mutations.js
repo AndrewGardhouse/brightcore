@@ -19,9 +19,9 @@ export default {
     state.amountRangeMax = value
   },
   setDateRangeMin(state, value) {
-    state.dateRangeMin = value
+    state.dateRangeMin = new Date(value)
   },
   setDateRangeMax(state, value) {
-    state.dateRangeMax = value
+    state.dateRangeMax = new Date(value)
   }
 }

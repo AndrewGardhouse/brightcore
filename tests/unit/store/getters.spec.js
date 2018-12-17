@@ -185,8 +185,8 @@ describe('getters', () => {
   })
 
   it('tableDataByDateRange with min and max', () => {
-    const minDate = new Date('2017-07-24')
-    const maxDate = new Date('2019-09-29')
+    const minDate = '2017-07-24'
+    const maxDate = '2019-09-29'
 
     expect(store.getters.tableDataByDateRange.length).toEqual(4)
 
@@ -210,7 +210,7 @@ describe('getters', () => {
   })
 
   it('tableDataByDateRange with min', () => {
-    const minDate = new Date('2018-11-11')
+    const minDate = '2018-11-11'
 
     expect(store.getters.tableDataByDateRange.length).toEqual(4)
 
@@ -233,7 +233,7 @@ describe('getters', () => {
   })
 
   it('tableDataByDateRange with max', () => {
-    const maxDate = new Date('2018-11-11')
+    const maxDate = '2018-11-11'
 
     expect(store.getters.tableDataByDateRange.length).toEqual(4)
 
@@ -256,8 +256,8 @@ describe('getters', () => {
   })
 
   it('filteredSortedTableData', () => {
-    const minDate = new Date('2017-07-24')
-    const maxDate = new Date('2019-09-29')
+    const minDate = '2017-07-24'
+    const maxDate = '2019-09-29'
     const amount = 20000
 
     expect(store.getters.filteredSortedTableData.length).toEqual(4)
