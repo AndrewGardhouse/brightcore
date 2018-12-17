@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex';
-import getters from '@/store/getters'
+import actions from '@/store/actions'
 import mutations from '@/store/mutations'
 import SearchFilters from '@/components/SearchFilters'
 
@@ -47,12 +47,68 @@ describe('SearchFilters', () => {
           }
         ]
       },
-      getters
+      actions,
+      mutations
     })
 
     wrapper = shallowMount(SearchFilters, {
       store,
       localVue
     })
+  })
+
+  it('searchByFilters will set filter fields in state', () => {
+    wrapper.setData({
+      filters: {
+        searchText: 'text',
+        amountRangeMin: 1234,
+        amountRangeMax: 5678,
+        dateRangeMin: '11-12-2018',
+        dateRangeMax: '12-11-2018'
+      }
+    })
+
+    wrapper.vm.searchByFilters()
+
+    expect(store.state.searchText).toBe(wrapper.vm.filters.searchText)
+    expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin)
+    expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax)
+    expect(store.state.dateRangeMin).toBe(wrapper.vm.filters.dateRangeMin)
+    expect(store.state.dateRangeMax).toBe(wrapper.vm.filters.dateRangeMax)
+  })
+
+
+  it('clearFilters will reset all fields to empty strings and state filters', () => {
+    wrapper.setData({
+      filters: {
+        searchText: 'text',
+        amountRangeMin: 1234,
+        amountRangeMax: 5678,
+        dateRangeMin: '11-12-2018',
+        dateRangeMax: '12-11-2018'
+      }
+    })
+
+    wrapper.vm.searchByFilters()
+
+    expect(store.state.searchText).toBe(wrapper.vm.filters.searchText)
+    expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin)
+    expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax)
+    expect(store.state.dateRangeMin).toBe(wrapper.vm.filters.dateRangeMin)
+    expect(store.state.dateRangeMax).toBe(wrapper.vm.filters.dateRangeMax)
+
+    wrapper.vm.clearFilters()
+
+    expect(wrapper.vm.filters.searchText).toBe('')
+    expect(wrapper.vm.filters.amountRangeMin).toBe('')
+    expect(wrapper.vm.filters.amountRangeMax).toBe('')
+    expect(wrapper.vm.filters.dateRangeMin).toBe('')
+    expect(wrapper.vm.filters.dateRangeMax).toBe('')
+
+    expect(store.state.searchText).toBe('')
+    expect(store.state.amountRangeMin).toBe('')
+    expect(store.state.amountRangeMax).toBe('')
+    expect(store.state.dateRangeMin).toBe('')
+    expect(store.state.dateRangeMax).toBe('')
   })
 })
