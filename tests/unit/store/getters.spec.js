@@ -17,6 +17,8 @@ describe('getters', () => {
         sortDirection: '',
         amountRangeMin: '',
         amountRangeMax: '',
+        dateRangeMin: '',
+        dateRangeMax: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -180,5 +182,76 @@ describe('getters', () => {
 
     expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[2])
     expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[0])
+  })
+
+  it('tableDataByDateRange with min and max', () => {
+    const minDate = new Date('2017-07-24')
+    const maxDate = new Date('2019-09-29')
+
+    expect(store.getters.tableDataByDateRange.length).toEqual(4)
+
+    store.commit('setDateRangeMin', minDate)
+    store.commit('setDateRangeMax', maxDate)
+
+    expect(store.getters.tableDataByDateRange.length).toEqual(2)
+    expect(store.getters.tableDataByDateRange).toContain(store.state.tableData[1])
+    expect(store.getters.tableDataByDateRange).toContain(store.state.tableData[2])
+
+    store.commit('setSortBy', 'Date')
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[2])
+    expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[1])
+
+    store.commit('setSortDirection', 'asc')
+
+    expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[1])
+    expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[2])
+  })
+
+  it('tableDataByDateRange with min', () => {
+    const minDate = new Date('2018-11-11')
+
+    expect(store.getters.tableDataByDateRange.length).toEqual(4)
+
+    store.commit('setDateRangeMin', minDate)
+
+    expect(store.getters.tableDataByDateRange.length).toEqual(2)
+    expect(store.getters.tableDataByDateRange).toContain(store.state.tableData[2])
+    expect(store.getters.tableDataByDateRange).toContain(store.state.tableData[3])
+
+    store.commit('setSortBy', 'Date')
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[3])
+    expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[2])
+
+    store.commit('setSortDirection', 'asc')
+
+    expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[2])
+    expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[3])
+  })
+
+  it('tableDataByDateRange with max', () => {
+    const maxDate = new Date('2018-11-11')
+
+    expect(store.getters.tableDataByDateRange.length).toEqual(4)
+
+    store.commit('setDateRangeMax', maxDate)
+
+    expect(store.getters.tableDataByDateRange.length).toEqual(2)
+    expect(store.getters.tableDataByDateRange).toContain(store.state.tableData[0])
+    expect(store.getters.tableDataByDateRange).toContain(store.state.tableData[1])
+
+    store.commit('setSortBy', 'Date')
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[1])
+    expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[0])
+
+    store.commit('setSortDirection', 'asc')
+
+    expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[0])
+    expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[1])
   })
 })

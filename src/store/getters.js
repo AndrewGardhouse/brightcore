@@ -46,5 +46,23 @@ export default {
     } else {
       return getters.tableDataBySearchText
     }
+  },
+  tableDataByDateRange(state, getters) {
+    if (state.dateRangeMin || state.dateRangeMax) {
+      return [...getters.tableDataByAmountRange].filter((row) => {
+        const rowDate = new Date(row['Date'])
+        if (state.dateRangeMin && state.dateRangeMax) {
+          return rowDate >= state.dateRangeMin && rowDate <= state.dateRangeMax
+        }
+        if (state.dateRangeMin) {
+          return rowDate >= state.dateRangeMin
+        }
+        if (state.dateRangeMax) {
+          return rowDate <= state.dateRangeMax
+        }
+      })
+    } else {
+      return getters.tableDataByAmountRange
+    }
   }
 }

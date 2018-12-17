@@ -15,6 +15,8 @@ describe('mutations', () => {
         sortDirection: '',
         amountRangeMin: '',
         amountRangeMax: '',
+        dateRangeMin: '',
+        dateRangeMax: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -106,5 +108,23 @@ describe('mutations', () => {
     store.commit('setAmountRangeMax', amountRangeMax)
 
     expect(store.state.amountRangeMax).toEqual(amountRangeMax)
+  })
+
+  it('setDateRangeMin', () => {
+    const dateRangeMin = new Date('2018-11-11')
+    expect(store.state.dateRangeMin).toEqual('')
+
+    store.commit('setDateRangeMin', dateRangeMin)
+
+    expect(store.state.dateRangeMin).toEqual(dateRangeMin)
+  })
+
+  it('setDateRangeMax', () => {
+    const dateRangeMax = new Date('2018-11-11')
+    expect(store.state.dateRangeMax).toEqual('')
+
+    store.commit('setDateRangeMax', dateRangeMax)
+
+    expect(store.state.dateRangeMax).toEqual(dateRangeMax)
   })
 })

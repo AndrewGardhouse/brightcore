@@ -17,5 +17,11 @@ export default {
   },
   setAmountRangeMax(state, value) {
     state.amountRangeMax = value
+  },
+  setDateRangeMin(state, value) {
+    state.dateRangeMin = value
+  },
+  setDateRangeMax(state, value) {
+    state.dateRangeMax = value
   }
 }
