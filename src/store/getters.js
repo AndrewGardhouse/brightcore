@@ -29,5 +29,22 @@ export default {
     } else {
       return getters.sortedTableData
     }
+  },
+  tableDataByAmountRange(state, getters) {
+    if (state.amountRangeMin || state.amountRangeMax) {
+      return [...getters.tableDataBySearchText].filter((row) => {
+        if (state.amountRangeMin && state.amountRangeMax) {
+          return row['Amount'] >= state.amountRangeMin && row['Amount'] <= state.amountRangeMax
+        }
+        if (state.amountRangeMin) {
+          return row['Amount'] >= state.amountRangeMin
+        }
+        if (state.amountRangeMax) {
+          return row['Amount'] <= state.amountRangeMax
+        }
+      })
+    } else {
+      return getters.tableDataBySearchText
+    }
   }
 }

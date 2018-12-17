@@ -2,6 +2,8 @@ export default {
   searchText: '',
   sortBy: '',
   sortDirection: '',
+  amountRangeMin: '',
+  amountRangeMax: '',
   tableData: [
     {
       'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',

@@ -11,5 +11,11 @@ export default {
   },
   setSearchText(state, value) {
     state.searchText = value
+  },
+  setAmountRangeMin(state, value) {
+    state.amountRangeMin = value
+  },
+  setAmountRangeMax(state, value) {
+    state.amountRangeMax = value
   }
 }

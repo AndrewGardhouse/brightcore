@@ -13,6 +13,8 @@ describe('mutations', () => {
         searchText: '',
         sortBy: '',
         sortDirection: '',
+        amountRangeMin: '',
+        amountRangeMax: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -86,5 +88,23 @@ describe('mutations', () => {
     store.commit('setSearchText', searchText)
 
     expect(store.state.searchText).toEqual(searchText)
+  })
+
+  it('setAmountRangeMin', () => {
+    const amountRangeMin = 5000
+    expect(store.state.amountRangeMin).toEqual('')
+
+    store.commit('setAmountRangeMin', amountRangeMin)
+
+    expect(store.state.amountRangeMin).toEqual(amountRangeMin)
+  })
+
+  it('setAmountRangeMax', () => {
+    const amountRangeMax = 50000
+    expect(store.state.amountRangeMax).toEqual('')
+
+    store.commit('setAmountRangeMax', amountRangeMax)
+
+    expect(store.state.amountRangeMax).toEqual(amountRangeMax)
   })
 })

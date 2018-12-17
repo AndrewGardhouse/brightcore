@@ -15,6 +15,8 @@ describe('getters', () => {
         searchText: '',
         sortBy: '',
         sortDirection: '',
+        amountRangeMin: '',
+        amountRangeMax: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -107,5 +109,76 @@ describe('getters', () => {
     store.commit('setSearchText', '')
 
     expect(store.getters.tableDataBySearchText.length).toEqual(4)
+  })
+
+  it('tableDataByAmountRange with min and max', () => {
+    const minAmount = 30000
+    const maxAmount = 70000
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(4)
+
+    store.commit('setAmountRangeMin', minAmount)
+    store.commit('setAmountRangeMax', maxAmount)
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(2)
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[0])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[1])
+
+    store.commit('setSortBy', 'Amount')
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[1])
+    expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[0])
+
+    store.commit('setSortDirection', 'asc')
+
+    expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[0])
+    expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[1])
+  })
+
+  it('tableDataByAmountRange with min', () => {
+    const minAmount = 40000
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(4)
+
+    store.commit('setAmountRangeMin', minAmount)
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(2)
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[1])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[3])
+
+    store.commit('setSortBy', 'Amount')
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[3])
+    expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[1])
+
+    store.commit('setSortDirection', 'asc')
+
+    expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[1])
+    expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[3])
+  })
+
+  it('tableDataByAmountRange with max', () => {
+    const maxAmount = 40000
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(4)
+
+    store.commit('setAmountRangeMax', maxAmount)
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(2)
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[0])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[2])
+
+    store.commit('setSortBy', 'Amount')
+    store.commit('setSortDirection', 'desc')
+
+    expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[0])
+    expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[2])
+
+    store.commit('setSortDirection', 'asc')
+
+    expect(store.getters.tableDataByAmountRange[0]).toMatchObject(store.state.tableData[2])
+    expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[0])
   })
 })
