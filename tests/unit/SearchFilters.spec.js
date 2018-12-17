@@ -61,8 +61,8 @@ describe('SearchFilters', () => {
     wrapper.setData({
       filters: {
         searchText: 'text',
-        amountRangeMin: 1234,
-        amountRangeMax: 5678,
+        amountRangeMin: 123,
+        amountRangeMax: 567,
         dateRangeMin: '11-12-2018',
         dateRangeMax: '12-11-2018'
       }
@@ -71,8 +71,8 @@ describe('SearchFilters', () => {
     wrapper.vm.searchByFilters()
 
     expect(store.state.searchText).toBe(wrapper.vm.filters.searchText)
-    expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin)
-    expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax)
+    expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin * 100)
+    expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax * 100)
     expect(store.state.dateRangeMin).toBe(wrapper.vm.filters.dateRangeMin)
     expect(store.state.dateRangeMax).toBe(wrapper.vm.filters.dateRangeMax)
   })
@@ -92,8 +92,8 @@ describe('SearchFilters', () => {
     wrapper.vm.searchByFilters()
 
     expect(store.state.searchText).toBe(wrapper.vm.filters.searchText)
-    expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin)
-    expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax)
+    expect(store.state.amountRangeMin).toBe(wrapper.vm.filters.amountRangeMin * 100)
+    expect(store.state.amountRangeMax).toBe(wrapper.vm.filters.amountRangeMax * 100)
     expect(store.state.dateRangeMin).toBe(wrapper.vm.filters.dateRangeMin)
     expect(store.state.dateRangeMax).toBe(wrapper.vm.filters.dateRangeMax)
 
@@ -110,5 +110,56 @@ describe('SearchFilters', () => {
     expect(store.state.amountRangeMax).toBe('')
     expect(store.state.dateRangeMin).toBe('')
     expect(store.state.dateRangeMax).toBe('')
+  })
+
+  it('amountRangeMinCents returns the amountRangeMin in cents', () => {
+    wrapper.setData({
+      filters: {
+        amountRangeMin: 100
+      }
+    })
+
+    expect(wrapper.vm.amountRangeMinCents).toBe(wrapper.vm.filters.amountRangeMin * 100)
+
+    wrapper.setData({
+      filters: {
+        amountRangeMin: ''
+      }
+    })
+
+    expect(wrapper.vm.amountRangeMinCents).toBe('')
+  })
+
+  it('amountRangeMaxCents returns in cents', () => {
+    wrapper.setData({
+      filters: {
+        amountRangeMax: 1000
+      }
+    })
+
+    expect(wrapper.vm.amountRangeMaxCents).toBe(wrapper.vm.filters.amountRangeMax * 100)
+
+    wrapper.setData({
+      filters: {
+        amountRangeMax: ''
+      }
+    })
+
+    expect(wrapper.vm.amountRangeMaxCents).toBe('')
+  })
+
+  it('amount range fields should submit amount in cents', () => {
+    const minAmount = 100
+    const maxAmount = 1000
+    const minAmountField = wrapper.find('#min-amount')
+    const maxAmountField = wrapper.find('#max-amount')
+
+    minAmountField.setValue(minAmount)
+    maxAmountField.setValue(maxAmount)
+
+    wrapper.vm.searchByFilters()
+
+    expect(store.state.amountRangeMin).toEqual(minAmount * 100)
+    expect(store.state.amountRangeMax).toEqual(maxAmount * 100)
   })
 })

@@ -55,6 +55,14 @@ export default {
       }
     }
   },
+  computed: {
+    amountRangeMinCents() {
+      return this.filters.amountRangeMin ? this.filters.amountRangeMin * 100 : ''
+    },
+    amountRangeMaxCents() {
+      return this.filters.amountRangeMax ? this.filters.amountRangeMax * 100 : ''
+    }
+  },
   methods: {
     ...mapActions([
       'setSearchFilters'
@@ -64,7 +72,11 @@ export default {
       this.setSearchFilters(this.filters)
     },
     searchByFilters() {
-      this.setSearchFilters(this.filters)
+      this.setSearchFilters({
+        ...this.filters,
+        amountRangeMin: this.amountRangeMinCents,
+        amountRangeMax: this.amountRangeMaxCents,
+      })
     }
   }
 }
