@@ -1,19 +1,25 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import state from '@/store/state'
 import getters from '@/store/getters'
-import Table from '@/components/Table';
+import mutations from '@/store/mutations'
+import actions from '@/store/actions'
 
-describe('Table.vue', () => {
-  let wrapper
-  let localVue
+Vue.use(Vuex)
+
+describe('getters', () => {
   let store
 
   beforeEach(() => {
-    localVue = createLocalVue()
-    localVue.use(Vuex)
-
     store = new Vuex.Store({
       state: {
+        searchText: '',
+        sortBy: '',
+        sortDirection: '',
+        amountRangeMin: '',
+        amountRangeMax: '',
+        dateRangeMin: '',
+        dateRangeMax: '',
         tableData: [
           {
             'ID': '3471DA17-401F-9633-BF81-4CADA6FD5C79',
@@ -45,16 +51,31 @@ describe('Table.vue', () => {
           }
         ]
       },
-      getters
-    })
-
-    wrapper = shallowMount(Table, {
-      store,
-      localVue
+      getters,
+      mutations,
+      actions
     })
   })
 
-  it('should have the sortedTableData from the store', () => {
-    expect(wrapper.vm.filteredSortedTableData.length).toBe(store.getters.filteredSortedTableData.length)
+  it('setSearchFilters', () => {
+    const searchText = 'Athena'
+    const amountRangeMin = 4000;
+    const amountRangeMax = 5000;
+    const dateRangeMin = new Date('12-11-2018');
+    const dateRangeMax = new Date('11-12-2018');
+
+    store.dispatch('setSearchFilters', {
+      searchText,
+      amountRangeMin,
+      amountRangeMax,
+      dateRangeMin,
+      dateRangeMax
+    })
+
+    expect(store.state.searchText).toEqual(searchText)
+    expect(store.state.amountRangeMin).toEqual(amountRangeMin)
+    expect(store.state.amountRangeMax).toEqual(amountRangeMax)
+    expect(store.state.dateRangeMin).toEqual(dateRangeMin)
+    expect(store.state.dateRangeMax).toEqual(dateRangeMax)
   })
 })
