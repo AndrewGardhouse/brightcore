@@ -1,7 +1,7 @@
 <template>
   <div class="table-wrapper">
     <TableHeaders />
-    <TableRow v-for="row in sortedTableData"
+    <TableRow v-for="row in filteredSortedTableData"
               :key="row['ID']"
               :id="row['ID']"
               :name="row['Name']"
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'sortedTableData'
+      'filteredSortedTableData'
     ])
   }
 }
