@@ -254,4 +254,43 @@ describe('getters', () => {
     expect(store.getters.tableDataByDateRange[0]).toMatchObject(store.state.tableData[0])
     expect(store.getters.tableDataByDateRange[1]).toMatchObject(store.state.tableData[1])
   })
+
+  it('filteredSortedTableData', () => {
+    const minDate = new Date('2017-07-24')
+    const maxDate = new Date('2019-09-29')
+    const amount = 20000
+
+    expect(store.getters.filteredSortedTableData.length).toEqual(4)
+
+    store.commit('setDateRangeMin', minDate)
+    store.commit('setDateRangeMax', maxDate)
+
+    expect(store.getters.filteredSortedTableData.length).toEqual(2)
+    expect(store.getters.filteredSortedTableData).toContain(store.state.tableData[1])
+    expect(store.getters.filteredSortedTableData).toContain(store.state.tableData[2])
+
+    store.commit('setAmountRangeMin', amount)
+
+    expect(store.getters.filteredSortedTableData.length).toEqual(1)
+    expect(store.getters.filteredSortedTableData[0]).toMatchObject(store.state.tableData[1])
+  })
+
+  it('filteredSortedTableData2', () => {
+    const minAmount = 30000
+    const maxAmount = 70000
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(4)
+
+    store.commit('setAmountRangeMin', minAmount)
+    store.commit('setAmountRangeMax', maxAmount)
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(2)
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[0])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[1])
+
+    store.commit('setSearchText', 'Kyra')
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(1)
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[0])
+  })
 })

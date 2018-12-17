@@ -64,5 +64,8 @@ export default {
     } else {
       return getters.tableDataByAmountRange
     }
+  },
+  filteredSortedTableData(state, getters) {
+    return getters.tableDataByDateRange
   }
 }
