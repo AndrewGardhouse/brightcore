@@ -111,24 +111,24 @@ describe('mutations', () => {
   })
 
   it('setDateRangeMin', () => {
-    const dateRangeMin = '2018-11-11'
+    const dateRangeMin = new Date('2018-11-11')
     expect(store.state.dateRangeMin).toEqual('')
 
     store.commit('setDateRangeMin', dateRangeMin)
 
-    expect(store.state.dateRangeMin).toEqual(new Date(dateRangeMin))
+    expect(store.state.dateRangeMin).toEqual(dateRangeMin)
 
     store.commit('setDateRangeMin', '')
     expect(store.state.dateRangeMin).toEqual('')
   })
 
   it('setDateRangeMax', () => {
-    const dateRangeMax = '2018-11-11'
+    const dateRangeMax = new Date('2018-11-11')
     expect(store.state.dateRangeMax).toEqual('')
 
     store.commit('setDateRangeMax', dateRangeMax)
 
-    expect(store.state.dateRangeMax).toEqual(new Date(dateRangeMax))
+    expect(store.state.dateRangeMax).toEqual(dateRangeMax)
 
     store.commit('setDateRangeMax', '')
     expect(store.state.dateRangeMin).toEqual('')
