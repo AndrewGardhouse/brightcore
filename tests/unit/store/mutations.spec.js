@@ -117,6 +117,9 @@ describe('mutations', () => {
     store.commit('setDateRangeMin', dateRangeMin)
 
     expect(store.state.dateRangeMin).toEqual(new Date(dateRangeMin))
+
+    store.commit('setDateRangeMin', '')
+    expect(store.state.dateRangeMin).toEqual('')
   })
 
   it('setDateRangeMax', () => {
@@ -126,5 +129,8 @@ describe('mutations', () => {
     store.commit('setDateRangeMax', dateRangeMax)
 
     expect(store.state.dateRangeMax).toEqual(new Date(dateRangeMax))
+
+    store.commit('setDateRangeMax', '')
+    expect(store.state.dateRangeMin).toEqual('')
   })
 })
