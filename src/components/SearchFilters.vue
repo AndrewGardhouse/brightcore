@@ -1,6 +1,6 @@
 <template>
   <form class="search-filters" @submit.prevent="searchByFilters">
-    <h2>Search Filters:</h2>
+    <h2>Filters:</h2>
     <div class="row">
       <div class="field">
         <label class="main-label" for="search-text">Keyword: </label>
@@ -123,11 +123,17 @@ export default {
     margin-bottom: 0.5rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 599px) {
+      grid-template-columns: 1fr;
+    }
     .field {
       display: flex;
       flex-direction: column;
       padding-left: 0.25rem;
       padding-right: 0.25rem;
+      @media (max-width: 599px) {
+        margin-bottom: 1rem;
+      }
       .main-label {
         margin-bottom: 0.5rem;
       }

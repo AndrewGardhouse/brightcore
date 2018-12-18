@@ -13,7 +13,10 @@
       </div>
     </form>
     <div class="display" v-else>
-      <p class="text" v-text="description"></p>
+      <div class="text-wrapper">
+        <p class="mobile-label">Description:</p>
+        <p class="text" v-text="description"></p>
+      </div>
       <font-awesome-icon class="edit-button"
                          @click="toggleShowEditForm"
                          icon="edit"
@@ -60,7 +63,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .description-column {
   padding: 0.5rem;
   .edit-description {
@@ -74,6 +77,18 @@ export default {
   }
   .display {
     display: flex;
+    .mobile-label {
+      display: none;
+      @media (max-width: 599px) {
+        display: block;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+      }
+    }
+    .text {
+      margin: 0;
+    }
     .edit-button {
       cursor: pointer;
       padding: 0 0.5rem;

@@ -1,17 +1,21 @@
 <template>
   <div class="table-row">
     <div class="column">
-      <p>{{ id }}</p>
+      <p class="mobile-label">ID:</p>
+      <p v-text="id"></p>
     </div>
     <div class="column">
-      <p>{{ name }}</p>
+      <p class="mobile-label">Name:</p>
+      <p v-text="name"></p>
     </div>
     <DescriptionForm :id="id" :description="description" />
     <div class="column">
-      <p>{{ formattedDate }}</p>
+      <p class="mobile-label">Date:</p>
+      <p v-text="formattedDate"></p>
     </div>
     <div class="column">
-      <p>{{ formattedCurrency }}</p>
+      <p class="mobile-label">Amount:</p>
+      <p v-text="formattedCurrency"></p>
     </div>
   </div>
 </template>
@@ -73,9 +77,23 @@ export default {
   .column {
     padding: 0.5rem;
     display: flex;
+    flex-direction: column;
+    .mobile-label {
+      display: none;
+    }
     p {
       margin-top: auto;
       margin-bottom: auto;
+    }
+  }
+  @media (max-width: 599px) {
+    grid-template-columns: 1fr;
+    .column {
+      .mobile-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+      }
     }
   }
 }

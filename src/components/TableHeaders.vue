@@ -40,5 +40,8 @@ export default {
 .table-headers {
   display: grid;
   border-bottom: 1px solid #2c3e50;
+  @media (max-width: 599px) {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
 </style>

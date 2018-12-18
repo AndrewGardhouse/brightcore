@@ -27,6 +27,10 @@ export default {
   color: rgba(26,26,26,.7);
   margin-left: 4rem;
   margin-right: 4rem;
+  @media (max-width: 599px) {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
 }
 
 textarea, input {
@@ -37,6 +41,7 @@ textarea, input {
   border-color: rgba(26, 26, 26, 0.7);
   border-width: 1px;
   resize: none;
+  outline: none;
 }
 
 input[type="date"] {
@@ -55,6 +60,8 @@ input[type="date"] {
   border-radius: 3px;
   color: #fff;
   font-weight: bold;
+  line-height: 1.7;
+  outline: none;
   cursor: pointer;
   transition: background-color 0.2s;
   &.submit {
