@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex';
 import actions from '@/store/actions'
 import mutations from '@/store/mutations'
+import getters from '@/store/getters'
 import SearchFilters from '@/components/SearchFilters'
 
 
@@ -55,7 +56,8 @@ describe('SearchFilters', () => {
         ]
       },
       actions,
-      mutations
+      mutations,
+      getters
     })
 
     wrapper = shallowMount(SearchFilters, {
@@ -165,5 +167,24 @@ describe('SearchFilters', () => {
 
     expect(store.state.dateRangeMin).toEqual(new Date(minDate))
     expect(store.state.dateRangeMax).toEqual(new Date(maxDate))
+  })
+
+  it('range inputs have highest and lowest getters for min and max', () => {
+    const minDateField = wrapper.find('#min-date')
+    const maxDateField = wrapper.find('#max-date')
+    const minAmountField = wrapper.find('#min-amount')
+    const maxAmountField = wrapper.find('#max-amount')
+
+    expect(minDateField.attributes('min')).toEqual(store.getters.lowestDate)
+    expect(minDateField.attributes('max')).toEqual(store.getters.highestDate)
+
+    expect(maxDateField.attributes('min')).toEqual(store.getters.lowestDate)
+    expect(maxDateField.attributes('max')).toEqual(store.getters.highestDate)
+
+    expect(minAmountField.attributes('min')).toEqual(store.getters.lowestAmount)
+    expect(minAmountField.attributes('max')).toEqual(store.getters.highestAmount)
+
+    expect(minAmountField.attributes('min')).toEqual(store.getters.lowestAmount)
+    expect(minAmountField.attributes('max')).toEqual(store.getters.highestAmount)
   })
 })

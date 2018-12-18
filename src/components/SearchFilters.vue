@@ -11,11 +11,21 @@
         <div class="ranges">
           <div class="range min">
             <label for="min-date">Min: </label>
-            <input id="min-date" type="date" name="min-date" v-model="filters.dateRangeMin">
+            <input id="min-date"
+                   type="date"
+                   name="min-date"
+                   v-model="filters.dateRangeMin"
+                   :min="lowestDate"
+                   :max="highestDate">
           </div>
           <div class="range max">
             <label for="max-date">Max: </label>
-            <input id="max-date" type="date" name="max-date" v-model="filters.dateRangeMax">
+            <input id="max-date"
+                   type="date"
+                   name="max-date"
+                   v-model="filters.dateRangeMax"
+                   :min="lowestDate"
+                   :max="highestDate">
           </div>
         </div>
       </div>
@@ -24,11 +34,21 @@
         <div class="ranges">
           <div class="range min">
             <label for="min-amount">Min: </label>
-            <input id="min-amount" type="number" name="min-amount" v-model="filters.amountRangeMin">
+            <input id="min-amount"
+                   type="number"
+                   name="min-amount"
+                   v-model="filters.amountRangeMin"
+                   :min="lowestAmount"
+                   :max="highestAmount">
           </div>
           <div class="range max">
             <label for="max-amount">Max: </label>
-            <input id="max-amount" type="number" name="max-amount" v-model="filters.amountRangeMax">
+            <input id="max-amount"
+                   type="number"
+                   name="max-amount"
+                   v-model="filters.amountRangeMax"
+                   :min="lowestAmount"
+                   :max="highestAmount">
           </div>
         </div>
       </div>
@@ -41,7 +61,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -54,6 +74,14 @@ export default {
         dateRangeMax: ''
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'lowestAmount',
+      'highestAmount',
+      'lowestDate',
+      'highestDate'
+    ])
   },
   methods: {
     ...mapActions([

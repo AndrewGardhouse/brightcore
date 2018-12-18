@@ -295,11 +295,11 @@ describe('getters', () => {
   })
 
   it('lowestAmount', () => {
-    expect(store.getters.lowestAmount).toEqual(73.67)
+    expect(store.getters.lowestAmount).toEqual('73.67')
   })
 
   it('highestAmount', () => {
-    expect(store.getters.highestAmount).toEqual(807.60)
+    expect(store.getters.highestAmount).toEqual('807.60')
   })
 
   it('lowestDate', () => {
