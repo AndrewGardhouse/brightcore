@@ -3,11 +3,11 @@
     <h2>Search Filters:</h2>
     <div class="row">
       <div class="field">
-        <label class="main-label" for="search-text">Search By Keyword: </label>
+        <label class="main-label" for="search-text">Keyword: </label>
         <input id="main-label" type="text" name="search-text" v-model="filters.searchText">
       </div>
       <div class="field">
-        <label class="main-label">Search By Date: </label>
+        <label class="main-label">Date: </label>
         <div class="ranges">
           <div class="range min">
             <label for="min-date">Min: </label>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="field">
-        <label class="main-label">Search By Amount($): </label>
+        <label class="main-label">Amount($): </label>
         <div class="ranges">
           <div class="range min">
             <label for="min-amount">Min: </label>
