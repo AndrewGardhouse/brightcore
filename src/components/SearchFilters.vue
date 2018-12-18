@@ -39,7 +39,8 @@
                    name="min-amount"
                    v-model="filters.amountRangeMin"
                    :min="lowestAmount"
-                   :max="highestAmount">
+                   :max="highestAmount"
+                   step=".01">
           </div>
           <div class="range max">
             <label for="max-amount">Max: </label>
@@ -48,7 +49,8 @@
                    name="max-amount"
                    v-model="filters.amountRangeMax"
                    :min="lowestAmount"
-                   :max="highestAmount">
+                   :max="highestAmount"
+                   step=".01">
           </div>
         </div>
       </div>
@@ -137,6 +139,7 @@ export default {
           label {
             margin-top: auto;
             margin-bottom: auto;
+            font-size: 0.9rem;
           }
           &.min {
             margin-right: 0.25rem;
