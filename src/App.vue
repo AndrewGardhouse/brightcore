@@ -29,7 +29,45 @@ export default {
   margin-right: 4rem;
 }
 
+textarea, input {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  padding: 0.25rem;
+  color: rgba(26, 26, 26, .9);
+  border-color: rgba(26, 26, 26, 0.7);
+  border-width: 1px;
+  resize: none;
+}
+
+input[type="date"] {
+  height: 16px;
+}
+
 .title {
   text-align: center;
+}
+
+.btn {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  &.submit {
+    background-color: rgba(63, 137, 56, 0.7);
+    &:hover {
+      background-color: rgba(63, 137, 56, 1);
+    }
+  }
+  &.cancel {
+    background-color: rgba(201, 58, 51, 0.7);
+    &:hover {
+      background-color: rgba(201, 58, 51, 1);
+    }
+  }
 }
 </style>

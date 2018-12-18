@@ -54,8 +54,8 @@
       </div>
     </div>
     <div class="buttons-wrapper">
-      <button type="submit">Search</button>
-      <button type="reset" @click="clearFilters">Clear Filters</button>
+      <button type="submit" class="btn submit">Search</button>
+      <button type="reset" class="btn cancel" @click="clearFilters">Clear Filters</button>
     </div>
   </form>
 </template>
@@ -134,6 +134,10 @@ export default {
         .range {
           display: flex;
           width: 100%;
+          label {
+            margin-top: auto;
+            margin-bottom: auto;
+          }
           &.min {
             margin-right: 0.25rem;
           }
