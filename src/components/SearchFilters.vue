@@ -55,24 +55,16 @@ export default {
       }
     }
   },
-  computed: {
-    amountRangeMinCents() {
-      return this.filters.amountRangeMin ? this.filters.amountRangeMin * 100 : ''
-    },
-    amountRangeMaxCents() {
-      return this.filters.amountRangeMax ? this.filters.amountRangeMax * 100 : ''
-    },
-    formattedDateRangeMin() {
-      return this.filters.dateRangeMin ? new Date(this.filters.dateRangeMin) : ''
-    },
-    formattedDateRangeMax() {
-      return this.filters.dateRangeMax ? new Date(this.filters.dateRangeMax) : ''
-    },
-  },
   methods: {
     ...mapActions([
       'setSearchFilters'
     ]),
+    formatAmount(amount) {
+      return amount ? amount * 100 : ''
+    },
+    formatDate(date) {
+      return date ? new Date(date) : ''
+    },
     clearFilters() {
       Object.keys(this.filters).forEach(filter => this.filters[filter] = '')
       this.setSearchFilters(this.filters)
@@ -80,10 +72,10 @@ export default {
     searchByFilters() {
       this.setSearchFilters({
         ...this.filters,
-        amountRangeMin: this.amountRangeMinCents,
-        amountRangeMax: this.amountRangeMaxCents,
-        dateRangeMin: this.formattedDateRangeMin,
-        dateRangeMax: this.formattedDateRangeMax
+        amountRangeMin: this.formatAmount(this.filters.amountRangeMin),
+        amountRangeMax: this.formatAmount(this.filters.amountRangeMax),
+        dateRangeMin: this.formatDate(this.filters.dateRangeMin),
+        dateRangeMax: this.formatDate(this.filters.dateRangeMax)
       })
     }
   }

@@ -119,40 +119,11 @@ describe('SearchFilters', () => {
     expect(store.state.dateRangeMax).toBe('')
   })
 
-  it('amountRangeMinCents returns the amountRangeMin in cents', () => {
-    wrapper.setData({
-      filters: {
-        amountRangeMin: 100
-      }
-    })
+  it('formatAmount returns amount in cents', () => {
+    const amountRangeMin = 100
 
-    expect(wrapper.vm.amountRangeMinCents).toBe(wrapper.vm.filters.amountRangeMin * 100)
-
-    wrapper.setData({
-      filters: {
-        amountRangeMin: ''
-      }
-    })
-
-    expect(wrapper.vm.amountRangeMinCents).toBe('')
-  })
-
-  it('amountRangeMaxCents returns the amountRangeMax in cents', () => {
-    wrapper.setData({
-      filters: {
-        amountRangeMax: 1000
-      }
-    })
-
-    expect(wrapper.vm.amountRangeMaxCents).toBe(wrapper.vm.filters.amountRangeMax * 100)
-
-    wrapper.setData({
-      filters: {
-        amountRangeMax: ''
-      }
-    })
-
-    expect(wrapper.vm.amountRangeMaxCents).toBe('')
+    expect(wrapper.vm.formatAmount(amountRangeMin)).toBe(amountRangeMin * 100)
+    expect(wrapper.vm.formatAmount('')).toBe('')
   })
 
   it('amount range fields should submit amount in cents', () => {
@@ -170,40 +141,11 @@ describe('SearchFilters', () => {
     expect(store.state.amountRangeMax).toEqual(maxAmount * 100)
   })
 
-  it('formattedDateRangeMin returns formatted date', () => {
-    wrapper.setData({
-      filters: {
-        dateRangeMin: '11-11-2018'
-      }
-    })
+  it('formatDate returns formatted date', () => {
+    const dateString = '2018-11-11'
 
-    expect(wrapper.vm.formattedDateRangeMin).toEqual(new Date(wrapper.vm.filters.dateRangeMin))
-
-    wrapper.setData({
-      filters: {
-        dateRangeMin: ''
-      }
-    })
-
-    expect(wrapper.vm.formattedDateRangeMin).toBe('')
-  })
-
-  it('formattedDateRangeMax returns formatted date', () => {
-    wrapper.setData({
-      filters: {
-        dateRangeMax: '11-11-2018'
-      }
-    })
-
-    expect(wrapper.vm.formattedDateRangeMax).toEqual(new Date(wrapper.vm.filters.dateRangeMax))
-
-    wrapper.setData({
-      filters: {
-        dateRangeMax: ''
-      }
-    })
-
-    expect(wrapper.vm.formattedDateRangeMax).toBe('')
+    expect(wrapper.vm.formatDate(dateString)).toEqual(new Date(dateString))
+    expect(wrapper.vm.formatDate('')).toEqual('')
   })
 
   it('date range fields should submit formatted date', () => {
