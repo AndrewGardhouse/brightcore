@@ -301,4 +301,12 @@ describe('getters', () => {
   it('highestAmount', () => {
     expect(store.getters.highestAmount).toEqual(807.60)
   })
+
+  it('lowestDate', () => {
+    expect(store.getters.lowestDate).toEqual('2017-07-23')
+  })
+
+  it('highestDate', () => {
+    expect(store.getters.highestDate).toEqual('2019-09-30')
+  })
 })

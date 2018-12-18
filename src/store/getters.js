@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 export default {
   tableHeaderNames(state) {
     return Object.keys(state.tableData[0])
@@ -80,6 +82,24 @@ export default {
       return state.tableData.reduce((max, row) => {
         return row['Amount'] > max ? row['Amount'] : max
       }, state.tableData[0]['Amount']) / 100
+    }
+  },
+  lowestDate(state) {
+    if (state.tableData) {
+      const date = state.tableData.reduce((min, row) => {
+        return row['Date'] < min ? row['Date'] : min
+      }, state.tableData[0]['Date'])
+
+      return dayjs(date).format('YYYY-MM-DD')
+    }
+  },
+  highestDate(state) {
+    if (state.tableData) {
+      const date = state.tableData.reduce((max, row) => {
+        return row['Date'] > max ? row['Date'] : max
+      }, state.tableData[0]['Date'])
+
+      return dayjs(date).format('YYYY-MM-DD')
     }
   }
 }
