@@ -67,5 +67,19 @@ export default {
   },
   filteredSortedTableData(state, getters) {
     return getters.tableDataByDateRange
+  },
+  lowestAmount(state) {
+    if (state.tableData) {
+      return state.tableData.reduce((min, row) => {
+        return row['Amount'] < min ? row['Amount'] : min
+      }, state.tableData[0]['Amount']) / 100
+    }
+  },
+  highestAmount(state) {
+    if (state.tableData) {
+      return state.tableData.reduce((max, row) => {
+        return row['Amount'] > max ? row['Amount'] : max
+      }, state.tableData[0]['Amount']) / 100
+    }
   }
 }

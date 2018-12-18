@@ -293,4 +293,12 @@ describe('getters', () => {
     expect(store.getters.tableDataByAmountRange.length).toEqual(1)
     expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[0])
   })
+
+  it('lowestAmount', () => {
+    expect(store.getters.lowestAmount).toEqual(73.67)
+  })
+
+  it('highestAmount', () => {
+    expect(store.getters.highestAmount).toEqual(807.60)
+  })
 })
