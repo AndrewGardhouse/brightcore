@@ -30,6 +30,11 @@ export default {
       'sortDirection'
     ])
   },
+  mounted() {
+    if (this.sortBy === this.header && this.sortDirection) {
+      this.sortDirectionIndex = this.sortDirections.indexOf(this.sortDirection)
+    }
+  },
   methods: {
     ...mapMutations([
       'setSortBy',
