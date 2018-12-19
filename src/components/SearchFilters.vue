@@ -63,7 +63,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
+import dayjs from 'dayjs'
 
 export default {
   data() {
@@ -83,7 +84,31 @@ export default {
       'highestAmount',
       'lowestDate',
       'highestDate'
+    ]),
+    ...mapState([
+      'searchText',
+      'amountRangeMin',
+      'amountRangeMax',
+      'dateRangeMin',
+      'dateRangeMax'
     ])
+  },
+  mounted() {
+    if (this.searchText) {
+      this.filters.searchText = this.searchText
+    }
+    if (this.amountRangeMin) {
+      this.filters.amountRangeMin = this.amountRangeMin / 100
+    }
+    if (this.amountRangeMax) {
+      this.filters.amountRangeMax = this.amountRangeMax / 100
+    }
+    if (this.dateRangeMin) {
+      this.filters.dateRangeMin = dayjs(this.dateRangeMin).format('YYYY-MM-DD')
+    }
+    if (this.dateRangeMax) {
+      this.filters.dateRangeMax = dayjs(this.dateRangeMax).format('YYYY-MM-DD')
+    }
   },
   methods: {
     ...mapActions([

@@ -54,13 +54,13 @@ export default {
       return [...getters.tableDataByAmountRange].filter((row) => {
         const rowDate = new Date(row['Date'])
         if (state.dateRangeMin && state.dateRangeMax) {
-          return rowDate >= state.dateRangeMin && rowDate <= state.dateRangeMax
+          return rowDate >= new Date(state.dateRangeMin) && rowDate <= new Date(state.dateRangeMax)
         }
         if (state.dateRangeMin) {
-          return rowDate >= state.dateRangeMin
+          return rowDate >= new Date(state.dateRangeMin)
         }
         if (state.dateRangeMax) {
-          return rowDate <= state.dateRangeMax
+          return rowDate <= new Date(state.dateRangeMax)
         }
       })
     } else {
