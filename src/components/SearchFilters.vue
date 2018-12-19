@@ -97,10 +97,10 @@ export default {
     if (this.searchText) {
       this.filters.searchText = this.searchText
     }
-    if (this.amountRangeMin) {
+    if (typeof(this.amountRangeMin) == 'number') {
       this.filters.amountRangeMin = this.amountRangeMin / 100
     }
-    if (this.amountRangeMax) {
+    if (typeof(this.amountRangeMax) == 'number') {
       this.filters.amountRangeMax = this.amountRangeMax / 100
     }
     if (this.dateRangeMin) {

@@ -38,7 +38,7 @@ export default {
 
     if (amountRangeMinIsNumber || amountRangeMaxIsNumber) {
       return [...getters.tableDataBySearchText].filter((row) => {
-        if (state.amountRangeMin && state.amountRangeMax) {
+        if (amountRangeMinIsNumber && amountRangeMaxIsNumber) {
           return row['Amount'] >= state.amountRangeMin && row['Amount'] <= state.amountRangeMax
         }
         if (amountRangeMinIsNumber) {
