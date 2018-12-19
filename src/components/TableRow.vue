@@ -2,20 +2,20 @@
   <div class="table-row">
     <div class="column">
       <p class="mobile-label">ID:</p>
-      <p v-text="id"></p>
+      <p class="column-text" v-text="id"></p>
     </div>
     <div class="column">
       <p class="mobile-label">Name:</p>
-      <p v-text="name"></p>
+      <p class="column-text" v-text="name"></p>
     </div>
     <DescriptionForm :id="id" :description="description" />
     <div class="column">
       <p class="mobile-label">Date:</p>
-      <p v-text="formattedDate"></p>
+      <p class="column-text" v-text="formattedDate"></p>
     </div>
     <div class="column">
       <p class="mobile-label">Amount:</p>
-      <p v-text="formattedCurrency"></p>
+      <p class="column-text" v-text="formattedCurrency"></p>
     </div>
   </div>
 </template>
@@ -71,28 +71,29 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/variables';
+
 .table-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr;
   .column {
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     .mobile-label {
-      display: none;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
     }
-    p {
+    .column-text {
       margin-top: auto;
       margin-bottom: auto;
     }
   }
-  @media (max-width: 599px) {
-    grid-template-columns: 1fr;
+  @media #{$breakpoint-md-and-up} {
+    grid-template-columns: repeat(5, 1fr);
     .column {
       .mobile-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 0.25rem;
+        display: none;
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <form class="search-filters" @submit.prevent="searchByFilters">
-    <h2>Filters:</h2>
+    <h2 class="filter-title">Filters:</h2>
     <div class="row">
       <div class="field">
         <label class="main-label" for="search-text">Keyword: </label>
@@ -113,27 +113,24 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/variables';
+
 .search-filters {
   margin-bottom: 1.5rem;
-  h2 {
+  .filter-title {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
   }
   .row {
     margin-bottom: 0.5rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    @media (max-width: 599px) {
-      grid-template-columns: 1fr;
-    }
+    grid-template-columns: 1fr;
     .field {
       display: flex;
       flex-direction: column;
       padding-left: 0.25rem;
       padding-right: 0.25rem;
-      @media (max-width: 599px) {
-        margin-bottom: 1rem;
-      }
+      margin-bottom: 1rem;
       .main-label {
         margin-bottom: 0.5rem;
       }
@@ -159,6 +156,30 @@ export default {
           }
         }
       }
+    }
+    @media #{$breakpoint-md} {
+      .field {
+        margin-bottom: 0;
+        .ranges {
+          flex-direction: column;
+          .range {
+            justify-content: space-between;
+            &.min {
+              margin-bottom: 0.25rem;
+              margin-right: 0;
+            }
+            &.max {
+              margin-left: 0;
+            }
+            input {
+              width: 75%;
+            }
+          }
+        }
+      }
+    }
+    @media #{$breakpoint-md-and-up} {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   .buttons-wrapper {

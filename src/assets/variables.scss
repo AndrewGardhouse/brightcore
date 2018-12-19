@@ -1,7 +1,8 @@
 // Media Query Breakpoints
 $breakpoint-xs: '(max-width: 37.5em)' !default;
 $breakpoint-sm: '(min-width: 37.5em)' !default;
-$breakpoint-md: '(min-width: 48em)' !default;
+$breakpoint-md: '(min-width: 48em) and (max-width: 63.9em)' !default;
+$breakpoint-md-and-up: '(min-width: 48em)' !default;
 $breakpoint-lg: '(min-width: 64em)' !default;
 
 // colors

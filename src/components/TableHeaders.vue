@@ -37,10 +37,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/variables';
+
 .table-headers {
   display: grid;
   border-bottom: 1px solid #2c3e50;
-  @media (max-width: 599px) {
+  @media #{$breakpoint-xs} {
     grid-template-columns: 1fr 1fr !important;
   }
 }

@@ -64,6 +64,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/variables';
+
 .description-column {
   padding: 0.5rem;
   .edit-description {
@@ -78,12 +80,11 @@ export default {
   .display {
     display: flex;
     .mobile-label {
-      display: none;
-      @media (max-width: 599px) {
-        display: block;
-        font-weight: bold;
-        margin-top: 0;
-        margin-bottom: 0.25rem;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+      @media #{$breakpoint-sm} {
+        display: none;
       }
     }
     .text {

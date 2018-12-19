@@ -1,7 +1,7 @@
 <template>
   <div class="table-wrapper">
     <TableHeaders />
-    <div v-if="filteredSortedTableData.length > 0">
+    <div class="row-wrapper" v-if="filteredSortedTableData.length > 0">
       <TableRow v-for="row in filteredSortedTableData"
                 :key="row['ID']"
                 :id="row['ID']"
@@ -37,8 +37,11 @@ export default {
 <style lang="scss">
 .table-wrapper {
   border: 1px solid #2c3e50;
-  .table-row:nth-child(even) {
-    background-color: #e6eeef;
+  .row-wrapper {
+    overflow: scroll;
+    .table-row:nth-child(even) {
+      background-color: #e6eeef;
+    }
   }
   .no-rows {
     text-align: center;
