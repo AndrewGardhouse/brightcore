@@ -78,4 +78,26 @@ describe('getters', () => {
     expect(store.state.dateRangeMin).toEqual(dateRangeMin)
     expect(store.state.dateRangeMax).toEqual(dateRangeMax)
   })
+
+  it('setSearchFilters can set amountRangeMin and amountRangeMax to 0', () => {
+    const searchText = ''
+    const amountRangeMin = 0;
+    const amountRangeMax = 0;
+    const dateRangeMin = '';
+    const dateRangeMax = '';
+
+    store.dispatch('setSearchFilters', {
+      searchText,
+      amountRangeMin,
+      amountRangeMax,
+      dateRangeMin,
+      dateRangeMax
+    })
+
+    expect(store.state.searchText).toEqual(searchText)
+    expect(store.state.amountRangeMin).toEqual(amountRangeMin)
+    expect(store.state.amountRangeMax).toEqual(amountRangeMax)
+    expect(store.state.dateRangeMin).toEqual(dateRangeMin)
+    expect(store.state.dateRangeMax).toEqual(dateRangeMax)
+  })
 })

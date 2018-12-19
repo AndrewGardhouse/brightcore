@@ -126,6 +126,7 @@ describe('SearchFilters', () => {
 
     expect(wrapper.vm.formatAmount(amountRangeMin)).toBe(amountRangeMin * 100)
     expect(wrapper.vm.formatAmount('')).toBe('')
+    expect(wrapper.vm.formatAmount(0)).toBe(0)
   })
 
   it('amount range fields should submit amount in cents', () => {

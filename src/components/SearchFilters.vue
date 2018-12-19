@@ -115,7 +115,7 @@ export default {
       'setSearchFilters'
     ]),
     formatAmount(amount) {
-      return amount ? amount * 100 : ''
+      return amount !== '' ? amount * 100 : ''
     },
     formatDate(date) {
       return date ? new Date(date) : ''
