@@ -184,6 +184,52 @@ describe('getters', () => {
     expect(store.getters.tableDataByAmountRange[1]).toMatchObject(store.state.tableData[0])
   })
 
+  it('tableDataByAmountRange with min 0', () => {
+    const minAmount = 0
+    store.state.tableData = [
+      ...store.state.tableData,
+      {
+        "ID": "5DEB3210-1591-B14D-1D51-389F84099E84",
+        "Name": "Lucas Ray",
+        "Description": "morbi tristique senectus",
+        "Date": "2017-06-19T14:05:17-07:00",
+        "Amount": -43933
+      },
+    ]
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(5)
+
+    store.commit('setAmountRangeMin', minAmount)
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(4)
+
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[0])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[1])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[2])
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[3])
+  })
+
+  it('tableDataByAmountRange with max 0', () => {
+    const maxAmount = 0
+    store.state.tableData = [
+      ...store.state.tableData,
+      {
+        "ID": "5DEB3210-1591-B14D-1D51-389F84099E84",
+        "Name": "Lucas Ray",
+        "Description": "morbi tristique senectus",
+        "Date": "2017-06-19T14:05:17-07:00",
+        "Amount": -43933
+      },
+    ]
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(5)
+
+    store.commit('setAmountRangeMax', maxAmount)
+
+    expect(store.getters.tableDataByAmountRange.length).toEqual(1)
+    expect(store.getters.tableDataByAmountRange).toContain(store.state.tableData[4])
+  })
+
   it('tableDataByDateRange with min and max', () => {
     const minDate = new Date('2017-07-24')
     const maxDate = new Date('2019-09-29')

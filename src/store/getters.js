@@ -33,15 +33,18 @@ export default {
     }
   },
   tableDataByAmountRange(state, getters) {
-    if (state.amountRangeMin || state.amountRangeMax) {
+    const amountRangeMinIsNumber = typeof(state.amountRangeMin) == 'number'
+    const amountRangeMaxIsNumber = typeof(state.amountRangeMax) == 'number'
+
+    if (amountRangeMinIsNumber || amountRangeMaxIsNumber) {
       return [...getters.tableDataBySearchText].filter((row) => {
         if (state.amountRangeMin && state.amountRangeMax) {
           return row['Amount'] >= state.amountRangeMin && row['Amount'] <= state.amountRangeMax
         }
-        if (state.amountRangeMin) {
+        if (amountRangeMinIsNumber) {
           return row['Amount'] >= state.amountRangeMin
         }
-        if (state.amountRangeMax) {
+        if (amountRangeMaxIsNumber) {
           return row['Amount'] <= state.amountRangeMax
         }
       })
