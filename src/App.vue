@@ -20,16 +20,26 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/variables';
+
+body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: rgba(26,26,26,.7);
-  margin-left: 4rem;
-  margin-right: 4rem;
-  @media (max-width: 599px) {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+  color: $font;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  @media #{$breakpoint-md} {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  @media #{$breakpoint-lg} {
+    margin-left: 4rem;
+    margin-right: 4rem;
   }
 }
 
@@ -37,8 +47,8 @@ textarea, input {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   padding: 0.25rem;
-  color: rgba(26, 26, 26, .9);
-  border-color: rgba(26, 26, 26, 0.7);
+  color: $font;
+  border-color: $font;
   border-width: 1px;
   resize: none;
   outline: none;
@@ -65,15 +75,15 @@ input[type="date"] {
   cursor: pointer;
   transition: background-color 0.2s;
   &.submit {
-    background-color: rgba(63, 137, 56, 0.7);
+    background-color: $btn-submit;
     &:hover {
-      background-color: rgba(63, 137, 56, 1);
+      background-color: $btn-submit-hover;
     }
   }
   &.cancel {
-    background-color: rgba(201, 58, 51, 0.7);
+    background-color: $btn-cancel;
     &:hover {
-      background-color: rgba(201, 58, 51, 1);
+      background-color: $btn-cancel-hover;
     }
   }
 }
