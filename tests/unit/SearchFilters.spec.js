@@ -201,8 +201,8 @@ describe('SearchFilters mounted()', () => {
     const store = new Vuex.Store({
       state: {
         searchText: 'word',
-        // sortBy: '',
-        // sortDirection: '',
+        sortBy: '',
+        sortDirection: '',
         amountRangeMin: 10000,
         amountRangeMax: 40000,
         dateRangeMin: new Date(minDateString),
