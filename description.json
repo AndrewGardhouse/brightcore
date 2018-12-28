@@ -1,0 +1,51 @@
+{
+  "name": "Andrew Gardhouse",
+  "email": "andrewgardhouse@gmail.com",
+  "currentLocation": "Toronto, Ontario, Canada",
+  "age": 32,
+  "experienceInYears": 4,
+  "personalSite": "https://AndrewGard.house",
+  "github": "https://github.com/AndrewGardhouse/",
+  "linkedIn": "https://linkedin.com/in/andrewgardhouse/",
+  "skills": {
+    "frontEnd": [
+      "VueJS",
+      "Angular",
+      "JQuery",
+      "Bootstrap",
+      "Javascript",
+      "MaterializeCSS",
+      "SASS/SCSS",
+    ],
+    "backEnd": [
+      "Express",
+      "Node",
+      "ZSH",
+      "Ruby",
+      "PHP",
+    ],
+    "other": [
+      "GIT",
+      "Heroku",
+      "Twilio",
+      "Stripe",
+      "DialogFlow",
+      "Surge.sh",
+      "Firebase",
+      "Facebook API",
+      "Google API"
+    ]
+  },
+  "hobbies": [
+    "playing guitar",
+    "skateboarding",
+    "snowboarding",
+    "yoga"
+  ],
+  "goals": [
+    "Continue learning and growing as a developer",
+    "Be able to contribute to projects that help people",
+    "Contribute more to open source projects that I use regularly",
+    "Become a true digital nomad"
+  ]
+}
