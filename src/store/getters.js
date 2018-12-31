@@ -73,6 +73,9 @@ export default {
   filteredSortedTableData(state, getters) {
     return getters.tableDataByDateRange
   },
+  tableRowCount(state, getters) {
+    return getters.filteredSortedTableData.length
+  },
   lowestAmount(state) {
     if (state.tableData) {
       const amount = state.tableData.reduce((min, row) => {

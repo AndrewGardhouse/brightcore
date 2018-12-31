@@ -111,6 +111,11 @@ describe('getters', () => {
     store.commit('setSearchText', '')
 
     expect(store.getters.tableDataBySearchText.length).toEqual(4)
+
+    // searchText doesn't match anything
+    store.commit('setSearchText', 'this does not match anything')
+
+    expect(store.getters.tableDataBySearchText.length).toEqual(0)
   })
 
   it('tableDataByAmountRange with min and max', () => {
@@ -354,5 +359,9 @@ describe('getters', () => {
 
   it('highestDate', () => {
     expect(store.getters.highestDate).toEqual('2019-09-30')
+  })
+
+  it('tableRowCount', () => {
+    expect(store.getters.tableRowCount).toEqual(store.getters.filteredSortedTableData.length)
   })
 })

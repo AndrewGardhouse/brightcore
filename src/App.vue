@@ -2,18 +2,21 @@
   <div id="app">
     <h1 class="title">Brightcore Table</h1>
     <SearchFilters />
+    <TableRowCount />
     <Table />
   </div>
 </template>
 
 <script>
-import Table from './components/Table.vue'
 import SearchFilters from './components/SearchFilters.vue'
+import TableRowCount from './components/TableRowCount.vue'
+import Table from './components/Table.vue'
 
 export default {
   name: 'app',
   components: {
     SearchFilters,
+    TableRowCount,
     Table
   }
 }
