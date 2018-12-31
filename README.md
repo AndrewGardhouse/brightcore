@@ -1,4 +1,12 @@
-# brightcore
+# BrightCore
+
+This is a project for Brightcore's mid-level front-end developer position application.
+You can check out the finished product [here](https://brightcore-test.surge.sh).
+
+## Prerequisites
+
+Have [nodejs](https://nodejs.org/en/) installed on your system. I personally use [nvm](https://github.com/creationix/nvm)
+For this project, use Node 8.x (Active LTS)
 
 ## Project setup
 ```
