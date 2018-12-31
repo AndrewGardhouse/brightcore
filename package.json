@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "config": {
-    "surge_domain": "https://brightcore-table.surge.sh"
+    "surge_domain": "brightcore-table"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "deploy": "npm run build && surge --project ./dist --domain $npm_package_config_surge_domain"
+    "deploy": "npm run build && surge --project ./dist --domain https://$npm_package_config_surge_domain.surge.sh"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.10",
