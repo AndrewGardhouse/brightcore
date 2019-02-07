@@ -1,7 +1,7 @@
 # BriteCore
 
 This is a project for BriteCore's mid-level front-end developer position application.
-You can check out the finished product [here](https://britecore-test.surge.sh).
+You can check out the finished product [here](https://britecore-table.surge.sh/).
 
 ## Prerequisites
 
