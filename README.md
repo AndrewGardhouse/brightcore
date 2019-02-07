@@ -1,7 +1,7 @@
-# BrightCore
+# BriteCore
 
-This is a project for Brightcore's mid-level front-end developer position application.
-You can check out the finished product [here](https://brightcore-test.surge.sh).
+This is a project for BriteCore's mid-level front-end developer position application.
+You can check out the finished product [here](https://britecore-test.surge.sh).
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ I wrote out in my notebook the components my Table was going to consist of.
 
 For testing my components, I would build the component and make sure it would display what I needed it to. Then, I would write the tests for the methods, user interactions, and mounted hooks.
 
-For styling, I kept it simple and focused on functionality and having the data clearly displayed on all screens. I used [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) for the overall Table structure and [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) for laying out the contents of the grid columns. 
+For styling, I kept it simple and focused on functionality and having the data clearly displayed on all screens. I used [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) for the overall Table structure and [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) for laying out the contents of the grid columns.
 
 ## Project setup
 ```

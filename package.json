@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "config": {
-    "surge_domain": "brightcore-table"
+    "surge_domain": "britecore-table"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

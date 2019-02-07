@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="title">Brightcore Table</h1>
+    <h1 class="title">BriteCore Table</h1>
     <SearchFilters />
     <TableRowCount />
     <Table />
